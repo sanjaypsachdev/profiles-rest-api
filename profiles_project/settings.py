@@ -72,6 +72,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'profiles_project.wsgi.application'
 
 
+# Custom user model
+AUTH_USER_MODEL = "profiles_api.UserProfile"
+
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 

@@ -62,13 +62,22 @@ The API will be available at **http://127.0.0.1:8000/**.
 - **Django REST Framework** – REST API toolkit
 - **SQLite** – Default database (development)
 
+## Troubleshooting
+
+**`VIRTUAL_ENV` does not match the project environment:** You're in this project but another virtualenv is activated (e.g. a parent folder's `.venv`). Either:
+
+- **Use this project's venv:** `source .venv/bin/activate` (then `VIRTUAL_ENV` will match and the warning goes away).
+- **Or run without activating:** use `uv run …` as in the commands below; uv will use this project's `.venv` and you can `unset VIRTUAL_ENV` to silence the warning.
+
+In Cursor/VS Code, ensure the interpreter is set to this workspace's `.venv` (e.g. **Python: Select Interpreter** → choose the one under this project).
+
 ## Useful commands
 
 | Command | Description |
 |---------|-------------|
 | `uv run python manage.py runserver` | Start the dev server |
 | `uv run python manage.py migrate` | Apply database migrations |
-| `uv run python manage.py makemigrations` | Create migrations from model changes |
+| `uv run python manage.py makemigrations profiles_api` | Create migrations from model changes (run from project root; only field/model changes are detected) |
 | `uv run python manage.py createsuperuser` | Create an admin user |
 | `uv run python manage.py shell` | Open Django shell |
 
