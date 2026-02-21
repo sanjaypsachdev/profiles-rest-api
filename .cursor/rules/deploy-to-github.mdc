@@ -1,0 +1,43 @@
+---
+description: Deploy/push from Cursor to GitHub using the origin remote
+alwaysApply: true
+---
+
+# Deploy to GitHub (origin)
+
+When deploying or pushing code from this project to GitHub, use the existing **origin** remote. Follow this workflow.
+
+## Before pushing
+
+1. **Check status**: Run `git status` to see uncommitted changes.
+2. **Run tests** (if applicable): e.g. `uv run pytest` or the project’s test command, so broken code isn’t pushed.
+
+## Deploy steps
+
+1. **Stage changes**:  
+   `git add .` (or specific paths, e.g. `git add path/to/file.py`).
+
+2. **Commit**:  
+   `git commit -m "Your clear commit message"`  
+   Use present tense, descriptive messages (e.g. "Add profile API endpoint", "Fix auth middleware").
+
+3. **Push to origin**:  
+   - Default branch (e.g. main):  
+     `git push -u origin main`  
+   - Current branch already set:  
+     `git push origin`  
+   - Other branch:  
+     `git push origin <branch-name>`
+
+## Conventions
+
+- **Remote**: Use `origin` only; it is already configured for the GitHub repo.
+- **Branch**: Prefer pushing to `main` unless the user specifies another branch.
+- **No force push by default**: Do not suggest or run `git push --force` unless the user explicitly asks for it.
+
+## If the user says "deploy" or "push to GitHub"
+
+1. Confirm what should be committed (from `git status`).
+2. Propose or use a clear commit message.
+3. Run: `git add .` → `git commit -m "..."` → `git push origin main` (or the current branch).
+4. If push fails (e.g. non-fast-forward), suggest `git pull origin main --rebase` then `git push origin main`, and only use `--force` if the user agrees.

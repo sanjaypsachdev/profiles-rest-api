@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.13
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run tests
+        run: uv run python manage.py test
+        env:
+          DJANGO_SETTINGS_MODULE: profiles_project.settings
+          SECRET_KEY: "ci-secret-key-for-testing"
+
+      - name: Check migrations
+        run: uv run python manage.py migrate --check
+        env:
+          DJANGO_SETTINGS_MODULE: profiles_project.settings
+          SECRET_KEY: "ci-secret-key-for-testing"
