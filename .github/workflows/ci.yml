@@ -31,6 +31,12 @@ jobs:
           DJANGO_SETTINGS_MODULE: profiles_project.settings
           SECRET_KEY: "ci-secret-key-for-testing"
 
+      - name: Apply migrations
+        run: uv run python manage.py migrate --no-input
+        env:
+          DJANGO_SETTINGS_MODULE: profiles_project.settings
+          SECRET_KEY: "ci-secret-key-for-testing"
+
       - name: Check migrations
         run: uv run python manage.py migrate --check
         env:
