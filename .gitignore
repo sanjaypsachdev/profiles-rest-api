@@ -11,3 +11,8 @@ wheels/
 
 # Local Django database
 db.sqlite3
+
+# Environment and secrets (never commit)
+.env
+.env.local
+.env.*.local

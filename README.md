@@ -17,6 +17,11 @@ A Django REST API project for managing user profiles. Built with Django 6 and Dj
 
 # Create virtual environment and install dependencies
 uv sync
+
+# Set the secret key (required). Copy .env.example to .env and set DJANGO_SECRET_KEY.
+# Generate a key: python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+cp .env.example .env
+# Edit .env and set DJANGO_SECRET_KEY=your-generated-key
 ```
 
 ### Using pip
